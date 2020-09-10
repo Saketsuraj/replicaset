@@ -53,8 +53,8 @@ bad.save(function(err, doc) {
   console.log("Document inserted succussfully!");
 });
 
-// find each person with a last name matching 'Ghost', selecting the `name` and `occupation` fields
+// find each person with a last name matching 'White', selecting the `name` fields
 Person.findOne({ 'name.last': 'White' }, 'name', function (err, person) {
   if (err) return handleError(err);
-  console.log('%s %s', person.name.first, person.name.last) // Space Ghost is a talk show host.
+  console.log('%s %s', person.name.first, person.name.last) // Walter White
 })
