@@ -8,7 +8,7 @@ var options = {
   replset: { rs_name: 'rs0' },
   user: 'mongoadmin',
   pass: 'password',
-  readPreference: 'nearest'
+  readPreference: 'secondary'
 }
 options.server.socketOptions = options.replset.socketOptions = { keepAlive: 1 };
 mongoose.connect(uri, options);
@@ -40,7 +40,9 @@ var Person = mongoose.model('Person', personSchema, "myCollection");
 
 // create a document
 var bad = new Person({
-    name: { first: 'Walter', last: 'White' }
+    name: { first: 'Walter', last: 'White' },
+    writeConcern: { w: "majority" , wtimeout: 5000 } 
+ 
 });
 
 console.log(bad.name.first + ' ' + bad.name.last); // Walter White
