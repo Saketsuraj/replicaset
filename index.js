@@ -7,7 +7,8 @@ var options = {
   server: { poolSize: 4 },
   replset: { rs_name: 'rs0' },
   user: 'mongoadmin',
-  pass: 'password'
+  pass: 'password',
+  readPreference: 'nearest'
 }
 options.server.socketOptions = options.replset.socketOptions = { keepAlive: 1 };
 mongoose.connect(uri, options);
@@ -49,3 +50,9 @@ bad.save(function(err, doc) {
   if (err) return console.error(err);
   console.log("Document inserted succussfully!");
 });
+
+// find each person with a last name matching 'Ghost', selecting the `name` and `occupation` fields
+Person.findOne({ 'name.last': 'White' }, 'name', function (err, person) {
+  if (err) return handleError(err);
+  console.log('%s %s', person.name.first, person.name.last) // Space Ghost is a talk show host.
+})
