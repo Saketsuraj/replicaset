@@ -2,7 +2,7 @@
 
 Follow this documentation to successfully setup replica set: https://www.linode.com/docs/databases/mongodb/create-a-mongodb-replica-set/
 
-Go to nano /etc/mongodb.conf and paste the following:
+Go to nano `/etc/mongodb.conf` and paste the following:
 ```
 dbpath=/var/lib/mongodb                                                                                                                
 logpath=/var/log/mongodb/mongodb.log                                                                                                    
